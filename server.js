@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 //Dependencies
+=======
+// Dependencies
+>>>>>>> master
 // =============================================================
 var express = require("express");
 var path = require("path");
