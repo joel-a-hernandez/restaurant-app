@@ -11,13 +11,13 @@ var PORT = process.env.PORT || 8080;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-var tableList = [{
+var tables = [{
   customerName: "Andy",
   phoneNumber: "0",
   customerEmail: "andy@andy.com",
   customerId: "1"
 }];
-var waitList = [{
+var waitlist = [{
   customerName: "Joel",
   phoneNumber: "2",
   customerEmail: "joel@joel.com",
@@ -33,23 +33,27 @@ app.get("/add", function(req, res){
   res.sendFile(path.join(__dirname, "add.html"));
 });
 
-app.get("/api/reservations", function(req, res){
-  console.log(tableList);
-  return res.json(tableList);
+app.get("/list", function(req, res){
+  res.sendFile(path.join(__dirname, "list.html"));
+});
+
+app.get("/api/tables", function(req, res){
+  console.log(tables);
+  return res.json(tables);
 });
 
 app.get("/api/waitlist", function(req, res){
-  console.log(waitList);
-  return res.json(waitList);
+  console.log(waitlist);
+  return res.json(waitlist);
 })
 
 app.post("/api/reservations", function(req, res){
   var newResy = req.body;
   console.log(newResy);
-  if(tableList.length < 5){
-    tableList.push(newResy);
+  if(tables.length < 5){
+    tables.push(newResy);
   }else{
-    waitList.push(newResy);
+    waitlist.push(newResy);
   }
   res.json(newResy);
 });
